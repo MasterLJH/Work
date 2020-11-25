@@ -1,0 +1,55 @@
+﻿
+第一步：
+	解决方案添加VM项。
+	View引用VM类，View和VM都引用BingLibrary类。
+	WPF窗口添加如下：
+		xmlns:bing="clr-namespace:BingLibrary.hjb.mvvm;assembly=BingLibrary"
+
+第二步：
+	VM中新建一个VMShell代码文件，添加【类似】如下：
+		注意需添加命名空间：
+			using System.ComponentModel.Composition;
+
+		然后添加如下：
+			[Export(MEF.Contracts.Data)]
+			[ExportMetadata(MEF.Key, "md1")]
+			[BingNotify]
+			public partial class mainData1 : DataSourceOriginal { }
+
+			[Export(MEF.Contracts.Data)]
+			[ExportMetadata(MEF.Key, "md2")]
+			[BingNotify]
+			public partial class mainData2 : DataSourceOriginal { }
+
+		说明：
+			[Export(MEF.Contracts.Data)]	导出的类型为类
+			[ExportMetadata(MEF.Key, "md1")]	导出的名字为md1
+			[BingNotify]	属性自动通知
+
+第三步：
+	右键卸载VM项目，然后编辑该项目。
+	在最下面添加如下：
+		<Import Project="..\BingLibrary\AutoNotify\BingLibrary.AutoNotify.targets"  />
+	保存，重新加载即可。
+
+
+
+BingLibrary说明：
+	Base：
+		MVVM基础类库，属性方法的绑定等。
+	Event：
+		事件聚合，用于VM之间的通信。
+	File：
+		文件操作类，包括创建文件，文件夹等。
+	Net：
+		网络通讯，tcp，udp等。
+	Permission：
+		权限类，提供界面控件的权限管理。
+	PLC：
+		PLC类，包含，信捷，台达，松下PLC的通信。
+	Tools：
+		常用工具类，异步，异常处理，加解密，日志，单例程序，其它等。
+		
+
+
+
