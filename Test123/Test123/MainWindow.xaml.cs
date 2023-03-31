@@ -23,6 +23,7 @@ namespace Test123
         public MainWindow()
         {
             InitializeComponent();
+            string a = "1";
         }
     }
 }
